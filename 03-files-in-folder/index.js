@@ -8,10 +8,7 @@ const displayFileInfo = async (pathFolder) => {
     const files = await fs.readdir(pathFolder, { withFileTypes: true });
 
     for (const file of files) {
-      if (file.isDirectory()) {
-        const newPath = path.resolve(pathFolder, file.name);
-        await displayFileInfo(newPath);
-      } else if (file.isFile()) {
+      if (file.isFile()) {
         const fileNameParts = file.name.split('.');
         const newFileName = fileNameParts.slice(0, -1).join('.');
         const fileExt = fileNameParts.length > 1 ? fileNameParts.pop() : '';
